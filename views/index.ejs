@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+</head>
+<body>
+
+  <div class="container">
+    <form action="/register" method="post" class="form">
+      <h2>Register</h2>
+
+      <input name="name" placeholder="Name" required>
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="password" type="password" placeholder="Password" required>
+      <input name="repeat_password" type="password" placeholder="Repeat Password" required>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <div class="users">
+      <h2>Users List</h2>
+      <ul>
+        <% users.forEach((user) => { %>
+          <li>
+            <p>ID: <%= user.id %></p>
+            <p>Name: <%= user.name %></p>
+            <p>Email:<%= user.email %></p>
+          </li>
+        <% }) %>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
