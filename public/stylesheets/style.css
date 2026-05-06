@@ -13,36 +13,48 @@ body {
   align-items: center;
 }
 
+/* container */
 .container {
   display: flex;
   gap: 40px;
   width: 900px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
+/* form */
 .form {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
   padding: 30px;
-  border-radius: 15px;
+  border-radius: 18px;
   width: 350px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
   color: white;
+  transition: 0.3s;
+}
+
+.form:hover {
+  transform: translateY(-5px);
 }
 
 .form h2 {
   text-align: center;
   margin-bottom: 20px;
+  letter-spacing: 1px;
 }
 
+/* inputs */
 .form input {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
   border: none;
   outline: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
+  transition: 0.3s;
 }
 
 .form input::placeholder {
@@ -50,28 +62,31 @@ body {
 }
 
 .form input:focus {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.02);
 }
 
+/* button */
 .form button {
   width: 100%;
   padding: 12px;
   margin-top: 10px;
   border: none;
-  border-radius: 8px;
-  background: #00c6ff;
+  border-radius: 10px;
   background: linear-gradient(to right, #00c6ff, #0072ff);
   color: white;
   font-size: 16px;
   cursor: pointer;
   transition: 0.3s;
+  font-weight: bold;
 }
 
 .form button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(1.07);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
 
+/* users */
 .users {
   width: 450px;
   color: white;
@@ -79,6 +94,7 @@ body {
 
 .users h2 {
   margin-bottom: 15px;
+  letter-spacing: 1px;
 }
 
 .users ul {
@@ -86,12 +102,13 @@ body {
 }
 
 .users li {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(15px);
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 12px;
   transition: 0.3s;
+  border-left: 3px solid #00c6ff;
 }
 
 .users li:hover {
@@ -101,4 +118,5 @@ body {
 
 .users p {
   margin: 5px 0;
+  font-size: 14px;
 }
