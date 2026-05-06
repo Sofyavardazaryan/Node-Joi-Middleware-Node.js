@@ -25,4 +25,25 @@ router.post("/register", checkBody, readDB, async (req, res) => {
   res.redirect("/");
 });
 
+router.get("/login", (req, res) => {
+  res.render("login");
+});
+
+router.post("/login", checkLogin, readDB, (req, res) => {
+  const { users, validateBody } = res.locals;
+  const { email, password } = validateBody;
+
+  const user = users.find(
+    (u) => u.email === email && u.password === password
+  );
+
+  if (!user) {
+    return res.send("Invalid email or password");
+  }
+
+  req.session.user = user;
+
+  res.redirect("/");
+});
+
 module.exports = router;
