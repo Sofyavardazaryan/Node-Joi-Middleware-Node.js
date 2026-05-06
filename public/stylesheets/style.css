@@ -13,7 +13,7 @@ body {
   align-items: center;
 }
 
-/* container */
+
 .container {
   display: flex;
   gap: 40px;
