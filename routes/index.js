@@ -10,75 +10,55 @@ const path = require("path");
 router.get("/", readDB, (req, res) => {
   const { users } = res.locals;
   res.render("index", {
-    users,
-    user: req.session?.user || null,
+    users: users || []
   });
 });
 
 router.get("/register", (req, res) => {
-  res.render("register");
+  res.redirect("/");
 });
 
 router.post("/register", checkBody, readDB, async (req, res) => {
-  try {
-    const { validateBody, users } = res.locals;
-    const existUser = users.find((u) => u.email === validateBody.email);
-
-    if (existUser) {
-      return res.send("Email already exists");
-    }
-
-    validateBody.id = Date.now();
-    delete validateBody.repeat_password;
-
-    const hashedPassword = await bcrypt.hash(validateBody.password, 10);
-
-    validateBody.password = hashedPassword;
-    users.push(validateBody);
-
-    await fs.writeFile(
-      path.join(__dirname, "..", "db", "users.json"),
-      JSON.stringify({ users }, null, 2),
-    );
-
-    res.redirect("/login");
-  } catch (error) {
-    res.send("Register Error");
+  const { validateBody, users } = res.locals;
+  const existUser = users.find(u => u.email === validateBody.email);
+  if (existUser) {
+    return res.send("Email already exists");
   }
+  validateBody.id = Date.now();
+  delete validateBody.repeat_password;
+  validateBody.password = await bcrypt.hash(validateBody.password, 10);
+  users.push(validateBody);
+  await fs.writeFile(
+    path.join(__dirname, "..", "db", "users.json"),
+    JSON.stringify({ users }, null, 2)
+  );
+  res.redirect("/");
 });
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.redirect("/");
 });
 
 router.post("/login", checkLogin, readDB, async (req, res) => {
-  try {
-    const { users, validateBody } = res.locals;
-    const { email, password } = validateBody;
-    const user = users.find((u) => u.email === email);
-
-    if (!user) {
-      return res.send("Wrong email or password");
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      return res.send("Wrong email or password");
-    }
-
-    req.session.user = user;
-
-    res.redirect("/");
-  } catch (error) {
-    res.send("Login Error");
+  const { users, validateBody } = res.locals;
+  const user = users.find(u => u.email === validateBody.email);
+  if (!user) {
+    return res.send("Wrong email or password");
   }
+
+  const isValid = await bcrypt.compare(
+    validateBody.password,
+    user.password
+  );
+
+  if (!isValid) {
+    return res.send("Wrong email or password");
+  }
+  res.redirect("/");
 });
 
 router.get("/logout", (req, res) => {
-  req.session.destroy(() => {
-    res.redirect("/");
-  });
+  res.redirect("/");
 });
 
 module.exports = router;
