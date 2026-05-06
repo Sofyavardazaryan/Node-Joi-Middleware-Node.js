@@ -2,13 +2,16 @@ const express = require("express");
 const router = express.Router();
 const { readDB } = require("../middleware/readDB");
 const { checkBody } = require("../middleware/checkBody");
+const { checkLogin } = require("../middleware/loginBody");
 const fs = require("fs").promises;
 const path = require("path");
 
 router.get("/", readDB, (req, res) => {
   const { users } = res.locals;
-
-  res.render("index", { users });
+  res.render("index", {
+    users,
+    user: req.session?.user,
+  });
 });
 
 router.post("/register", checkBody, readDB, async (req, res) => {
@@ -22,7 +25,7 @@ router.post("/register", checkBody, readDB, async (req, res) => {
     JSON.stringify(users),
   );
 
-  res.redirect("/");
+  res.redirect("/login");
 });
 
 router.get("/login", (req, res) => {
@@ -32,18 +35,18 @@ router.get("/login", (req, res) => {
 router.post("/login", checkLogin, readDB, (req, res) => {
   const { users, validateBody } = res.locals;
   const { email, password } = validateBody;
-
-  const user = users.find(
-    (u) => u.email === email && u.password === password
-  );
+  const user = users.find((u) => u.email === email && u.password === password);
 
   if (!user) {
     return res.send("Invalid email or password");
   }
-
   req.session.user = user;
-
   res.redirect("/");
+});
+
+router.get("/logout", (req, res) => {
+  req.session.user = null;
+  res.redirect("/login");
 });
 
 module.exports = router;

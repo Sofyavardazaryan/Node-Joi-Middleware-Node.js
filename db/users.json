@@ -1,1 +1,32 @@
-[{"id":1,"name":"Sofya","email":"vardazaryansofia123@gmail.com","password":"Sofia123"},{"name":"adwsd","email":"sofyavardazaryan95@gmail.com","password":"xaxa","id":1777906167511},{"name":"Aram","email":"manukyan@gmail.com","password":"123","id":1777970346317},{"name":"ggg","email":"vardazaryansofya@gmail.com","password":"145","id":1777970428654}]
+[
+  {
+    "id": 1,
+    "name": "Sofya",
+    "email": "vardazaryansofia123@gmail.com",
+    "password": "Sofia123"
+  },
+  {
+    "name": "adwsd",
+    "email": "sofyavardazaryan95@gmail.com",
+    "password": "xaxa",
+    "id": 1777906167511
+  },
+  {
+    "name": "Aram",
+    "email": "manukyan@gmail.com",
+    "password": "123",
+    "id": 1777970346317
+  },
+  {
+    "name": "ggg",
+    "email": "vardazaryansofya@gmail.com",
+    "password": "145",
+    "id": 1777970428654
+  },
+  {
+    "name": "Sofya",
+    "email": "vardazaryansofya@gmail.com",
+    "password": "123",
+    "id": 1778066311520
+  }
+]
