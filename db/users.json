@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "name": "Sofy",
+      "email": "vardazaryansofya@gmail.com",
+      "password": "$2b$10$1dwhwtz8/0IoMeMykIcv5OPUo1JsvBji47iMLfxy90Y9ut59nd7kK",
+      "id": 1778074662945
+    },
+    {
+      "name": "Sofya ",
+      "email": "vardazaryansofya@gmail.com",
+      "password": "$2b$10$0iGw2M3hASDC0v3ChQ0hMOPstX63tA71In4TettrdC4TgauZen5G2",
+      "id": 1778075051645
+    },
+    {
+      "name": "Svetlana ",
+      "email": "sof@mail.ru",
+      "password": "$2b$10$GYGbw5G66nTtuCdHJnd72uvpxOC0JGRtJPSpsppuze6Sem4aFBm4a",
+      "id": 1778079775727
+    }
+  ]
+}
