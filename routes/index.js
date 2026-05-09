@@ -6,11 +6,12 @@ const { checkLogin } = require("../middleware/loginBody");
 const bcrypt = require("bcryptjs");
 const fs = require("fs").promises;
 const path = require("path");
-const UserController = require("../Controller/UserController");
+const UserController = require("../Controller/UserController")
 
-const UserController = new UserController()
+const userController = new UserController()
 
-router.get("/", readDB, UserController.getUsres);
+
+router.get("/", userController.getUsers);
 
 router.get("/register", (req, res) => {
   res.redirect("/");
